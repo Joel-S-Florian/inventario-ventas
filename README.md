@@ -34,7 +34,7 @@ npm install
 npm run dev
 ```
 
-### IA (etapa 2, opcional)
+### IA (etapa 2)
 
 Documentacion completa de la integracion, con diagramas, comparaciones y resultados: [docs/INTEGRACION_IA.md](docs/INTEGRACION_IA.md).
 
