@@ -36,6 +36,8 @@ npm run dev
 
 ### IA (etapa 2, opcional)
 
+Documentacion completa de la integracion, con diagramas, comparaciones y resultados: [docs/INTEGRACION_IA.md](docs/INTEGRACION_IA.md).
+
 Necesita la variable de entorno `GEMINI_API_KEY` (nunca en archivos). Sin ella la app funciona igual y `/ia/*` responde 503.
 La IA **propone y tu confirmas**: nunca escribe en la base ni calcula montos.
 
