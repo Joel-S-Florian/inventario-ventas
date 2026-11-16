@@ -1,0 +1,66 @@
+/* Tokens de diseno. Inspirado en el estilo de Render: casi negro, bordes finos, boton primario invertido, acento morado. */
+:root {
+  color-scheme: light;
+  --bg: #fafafa; --surface: #ffffff; --surface-2: #f4f4f5;
+  --border: #e4e4e7; --border-strong: #cfcfd6;
+  --text: #0d0d0d; --muted: #6b6b75;
+  --accent: #7a3ff1; --accent-soft: rgba(122, 63, 241, .1);
+  --primary-bg: #0d0d0d; --primary-fg: #ffffff;
+  --ok: #0f8a5f; --ok-soft: rgba(15, 138, 95, .1);
+  --danger: #cf222e; --danger-soft: rgba(207, 34, 46, .08);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 6px 20px rgba(0, 0, 0, .05);
+  --grid: rgba(0, 0, 0, .045);
+  --radius: 12px; --radius-sm: 8px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d0d0d; --surface: #141414; --surface-2: #1c1c1e;
+  --border: #2a2a2e; --border-strong: #3d3d43;
+  --text: #f4f4f5; --muted: #8e8e98;
+  --accent: #9b6bff; --accent-soft: rgba(155, 107, 255, .15);
+  --primary-bg: #f4f4f5; --primary-fg: #0d0d0d;
+  --ok: #37cd8f; --ok-soft: rgba(55, 205, 143, .12);
+  --danger: #ff7b7b; --danger-soft: rgba(255, 123, 123, .1);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 10px 30px rgba(0, 0, 0, .4);
+  --grid: rgba(255, 255, 255, .04);
+}
+
+/* Acentos elegibles (morado es el predeterminado). Los de tema oscuro son mas claros para mantener contraste. */
+:root[data-acento="azul"] { --accent: #2563eb; --accent-soft: rgba(37, 99, 235, .1); }
+:root[data-acento="verde"] { --accent: #0f8a5f; --accent-soft: rgba(15, 138, 95, .1); }
+:root[data-acento="ambar"] { --accent: #b45309; --accent-soft: rgba(180, 83, 9, .1); }
+:root[data-theme="dark"][data-acento="azul"] { --accent: #6ea0ff; --accent-soft: rgba(110, 160, 255, .15); }
+:root[data-theme="dark"][data-acento="verde"] { --accent: #37cd8f; --accent-soft: rgba(55, 205, 143, .15); }
+:root[data-theme="dark"][data-acento="ambar"] { --accent: #f5b04c; --accent-soft: rgba(245, 176, 76, .15); }
+
+* { box-sizing: border-box; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: clip; color: var(--text); font: 15px/1.5 var(--font); font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased; }
+/* Cuadricula sutil de fondo que se desvanece hacia abajo */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 30%, transparent 75%);
+}
+::selection { background: var(--accent-soft); }
+
+/* Transicion suave al cambiar de tema (la activa el boton por 350 ms) */
+.tema-anim, .tema-anim *, .tema-anim *::before, .tema-anim *::after {
+  transition: background-color .3s ease, border-color .3s ease, color .3s ease, fill .3s ease, box-shadow .3s ease !important;
+}
+
+@keyframes entra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes entra-izq { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+@keyframes baja { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
+@keyframes giro { from { opacity: 0; transform: rotate(-90deg) scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes brillo { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes pulso { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
