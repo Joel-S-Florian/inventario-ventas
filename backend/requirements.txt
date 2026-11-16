@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+pyjwt
+argon2-cffi
+pytest
+httpx
+google-genai==3.2.0
